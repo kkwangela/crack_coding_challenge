@@ -5,6 +5,7 @@ class LinkedNode:
         self.key = key
         self.value = value
         self.next = next
+        
 class LRUCache:
 
     def __init__(self, capacity: int):
