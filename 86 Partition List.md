@@ -1,5 +1,5 @@
-Since this question did not ask to edit in-place, we can create two linked-lists: one store nodes smaller than x in order and the other one stores nodes larger than x in order.
-```
+Since this question did not ask to edit in-place, we can **create two linked-lists**: one store nodes smaller than x in order and the other one stores nodes larger than x in order.
+```Python
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
