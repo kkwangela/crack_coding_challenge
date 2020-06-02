@@ -9,68 +9,60 @@ class segmentTree:
         self.val = val
         self.left, self.right = None, None
 class NumArray:
-
-    def __init__(self, nums):
-        """
-        :type nums: List[int]
-        """
-        
-        if len(nums) == 0:
-            return None 
-        self.root = self.build(nums, 0, len(nums) - 1)
-    
-    def build(self, nums, start, end):
+    def build(self, start, end, nums):
+        if start > end:
+            return None
+        if start == end:
+            return segmentTree(start, end, nums[start])
         root = segmentTree(start, end, nums[start])
-        if start >= end:
-            return root 
         mid = (start + end) // 2
-        root.left = self.build(nums, start, mid)
-        root.right = self.build(nums, mid + 1, end)
+        root.left = self.build(start, mid, nums)
+        root.right = self.build(mid + 1, end, nums)
         if root.left and root.right:
-            root.val = root.left.val + root.right.val 
-            
+            root.val = root.left.val + root.right.val
         return root
-        
-    def modify(self, root,  index, val):
+    
+    def modify(self, root, index, val):
         if root.start == root.end:
-            root.val = val 
-            return
-        if root is None:
-            return
+            root.val = val
+            return 
         mid = (root.start + root.end) // 2 
         if index <= mid:
             self.modify(root.left, index, val)
         else:
             self.modify(root.right, index, val)
-
         root.val = root.left.val + root.right.val
-        return 
-        
-    def update(self, i, val):
-        """
-        :type i: int
-        :type val: int
-        :rtype: void
-        """
+        return
+    
+    def query(self, root, start, end):
+        if not root:
+            return 0
+        if root.start == start and root.end == end:
+            return root.val
+        if start > end:
+            return 0
+        mid = (root.start + root.end) // 2
+        if end > mid:
+            if start <= mid:
+                left = self.query(root.left, start, mid)
+                right = self.query(root.right, mid + 1, end)
+                return left + right
+            else:
+                return self.query(root.right, start, end)
+        else:
+            return self.query(root.left, start, end)
+            
+    
+    def __init__(self, nums: List[int]):
+        if len(nums) == 0:
+            return None
+        self.root = self.build(0, len(nums) - 1, nums)
+
+    def update(self, i: int, val: int) -> None:
         self.modify(self.root, i, val)
 
-    def sumRange(self, i, j):
-        """
-        :type i: int
-        :type j: int
-        :rtype: int
-        """
-       
+    def sumRange(self, i: int, j: int) -> int:
         return self.query(self.root, i, j)
-        
-    def query(self, root, start, end):
-        if start > end:
-            return 0 
-        if root.start >= start and root.end <= end:
-            return root.val 
-        if start > root.end or end < root.start:
-            return 0
-        return self.query(root.left, start, end) + self.query(root.right, start, end)
 
 
 # Your NumArray object will be instantiated and called as such:
