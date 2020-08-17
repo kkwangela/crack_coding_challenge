@@ -52,5 +52,20 @@ print(mean, mode)
 ```
 # Decode ways
 ```Python
-
+num = input()
+num = num[1: -1]
+print(num)
+if len(num) == 0:
+    print(0)
+dp = [0 for _ in range(len(num) + 1)]
+dp[0] = 1
+dp[1] = 1
+for i in range(2, len(num) + 1):
+    dp[i] += dp[i - 1]
+    if num[i - 2] != "0":
+        tmp = int(num[i - 2: i])
+        if 10 <= tmp <= 25:
+            dp[i] += dp[i - 2]
+print(dp[-1])
 ```
+
