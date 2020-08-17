@@ -49,6 +49,8 @@ freq = collections.Counter(nums)
 sorted_nums = list(sorted(freq.items(), key = lambda x: -x[1]))
 mode = sorted_nums[0][0]
 print(mean, mode)
+```
+# Decode ways
+```Python
 
 ```
-
