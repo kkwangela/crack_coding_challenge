@@ -6,7 +6,8 @@ print(bin(num).count("1"))
 ```
 
 # Length of list
-```language
-
+```Python
+nums = input()
+print(len(nums.split()))
 ```
 
