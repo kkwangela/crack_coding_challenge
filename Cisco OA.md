@@ -98,3 +98,18 @@ for i in range(1, n):
 print(dp[-1])
 
 ```
+# Maximum difference
+```Python
+n = int(input())
+nums = input().split()
+nums = [int(i) for i in nums]
+if n == 1:
+    print(0)
+mi = float("inf")
+res = 0
+for n in nums:
+    res = max(res, n - mi)
+    mi = min(mi, n)
+print(res)
+
+```
