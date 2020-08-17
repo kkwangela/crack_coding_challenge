@@ -68,4 +68,17 @@ for i in range(2, len(num) + 1):
             dp[i] += dp[i - 2]
 print(dp[-1])
 ```
+# Black and white chese board
 
+```Python
+n = int(input())
+for i in range(1, n + 1):
+    res = ["" for _ in range(n)]
+    if i % 2 == 1:
+        for j in range(1, n + 1):
+            res[j - 1] = "W" if j % 2 == 1 else "B"
+    else:
+        for j in range(1, n + 1):
+            res[j - 1] = "B" if j % 2 == 1 else "W"
+    print(" ".join(res))
+```
