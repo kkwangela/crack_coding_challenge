@@ -1,2 +1,2 @@
 two pass
-Fristly find a celebrity
+Fristly find a candidate. How? By traverse through
