@@ -25,4 +25,23 @@ class Solution(object):
                 heapq.heappop(h)
         return res
 
+class Solution:
+    def maxEvents(self, events: List[List[int]]) -> int:
+        h = []
+        events.sort()
+        d = 0
+        res = 0
+        
+        while events or h:
+            if not h:
+                mi = events[0][0]
+            while events and events[0][0] <= mi:
+                heapq.heappush(h, events.pop(0)[1])
+            res += 1
+            mi += 1
+            heapq.heappop(h)
+            while h and h[0] < mi:
+                heapq.heappop(h)
+        return res
+
 ```
